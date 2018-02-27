@@ -15,7 +15,7 @@ nodename = "CTF-001"
 tx = "1c5d17314391b4ffcf68daca7d7b6dde9b49"
 webhook_url="https://discordapp.com/api/webhooks/417123462042091521/UTO2JebYzoiEaxECF1xb2g0tau4tv_S9JUIVGLO9r04j4INFWEOI-M8YqxD6PB-xlBrm"
 blockchain_api="http://explorer.coin2fly.com/api/"
-blockchain_maxdrift = 1 
+blockchain_maxdrift = 1
 ######################
 
 DEBUG=False
@@ -37,8 +37,8 @@ def blockchain_compare(blockcount, apiblockcount):
         output_str = "[**" + nodename + "**] [**WARNING**] Local BlockCount: **" + str(blockcount) + "** API BlockCount: **" + str(apiblockcount) + "**"
         send_message(output_str)
     if (DEBUG):
-        send_message(output_str)	
-    return			
+        send_message(output_str)
+    return
 
 
 def humanize_time(secs):
@@ -64,13 +64,11 @@ apiblockcount = int(r.text)
 
 blockchain_compare(blockcount, apiblockcount)
 
-exit
-
 # main (todo: refactor)
 cmd = subprocess.Popen([nodecmd, "masternode", "list", "full", tx], stdout=subprocess.PIPE)
 lines = cmd.communicate()
 
-tokens=','.join(map(str,lines)).split(" ") 
+tokens=','.join(map(str,lines)).split(" ")
 tokens = list(filter(None, tokens))
 status = tokens[3]
 uptime=int(tokens[7])
@@ -81,10 +79,10 @@ activedatetime = humanize_time(uptime)
 good = 0
 if (status == "ENABLED"):
 	if (uptime < 1):
-		output_str = "[**" + nodename + "**] Active Time: **" + activedatetime + "** Status: **ENABLED**" 
+		output_str = "[**" + nodename + "**] Active Time: **" + activedatetime + "** Status: **ENABLED**"
 	else:
 		good=1
-		output_str = "[**" + nodename + "**] (_Test_) Active Time: **" + activedatetime + "** Status: **" + status + "**"  	
+		output_str = "[**" + nodename + "**] (_Test_) Active Time: **" + activedatetime + "** Status: **" + status + "**"
 else:
 	output_str = "[**" + nodename + "**] [**WARNING**] Status: **" + status + "**"
 
@@ -92,4 +90,3 @@ webhook = Webhook(webhook_url, avatar_url=None)
 
 if (good != 1):
 	webhook.send_message(output_str, "NodeNanny", avatar_url=None)
-
