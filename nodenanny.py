@@ -13,9 +13,9 @@ import requests
 nodecmd = "coin2fly-cli"
 nodename = "CTF-001"
 tx = "1c5d17314391b4ffcf68daca7d7b6dde9b49"
-webhook_url="https://discordapp.com/api/webhooks/417123462042091521/UTO2JebYzoiEaxECF1xb2g0tau4tv_S9JUIVGLO9r04j4INFWEOI-M8YqxD6PB-xlBrm"
+webhook_url="https://discordapp.com/api/webhooks/..."
 blockchain_api="http://explorer.coin2fly.com/api/"
-blockchain_maxdrift = 1
+blockchain_maxdrift = 5
 ######################
 
 DEBUG=False
